@@ -27,21 +27,24 @@ public class ReverseString {
 		}
 		System.out.println(s);
 		s = "";
-		for(int i = str.length() - 1; i >= 0; i--) {
+		for (int i = str.length() - 1; i >= 0; i--) {
 			s += String.valueOf(str.charAt(i));
 		}
 		System.out.println(s);
 		s = "";
 		charList.clear();
-		for(int i = str.length() - 1; i >= 0; i--) {
+		for (int i = str.length() - 1; i >= 0; i--) {
 			charList.add(str.charAt(i));
 		}
 		System.out.println(charList.stream().map(String::valueOf).collect(Collectors.joining("")));
 		s = "";
-		for(int i = str.length(); i > 0; i--) {
+		for (int i = str.length(); i > 0; i--) {
 			s += str.substring(i - 1, i);
 		}
 		System.out.println(s);
+		for (int i = str.length() - 1; i >= 0; i--) {
+			System.out.print(str.charAt(i));
+		}
 	}
 
 }
