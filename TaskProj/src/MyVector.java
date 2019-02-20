@@ -1,7 +1,6 @@
-import java.util.Arrays;
-
 public class MyVector<T> {
 
+	@SuppressWarnings("unchecked")
 	private T [] data = (T[])new Object[3];
 	private int size = 0;
 	
@@ -14,6 +13,15 @@ public class MyVector<T> {
 		System.out.println(vector.get(2));
 		System.out.println(vector.getLast());
 		System.out.println(vector.size());
+		
+		MyVector<Integer> vector1 = new MyVector<>();
+		vector1.add(1);
+		vector1.add(2);
+		vector1.add(3);
+		vector1.add(10);
+		System.out.println(vector1.get(2));
+		System.out.println(vector1.getLast());
+		System.out.println(vector1.size());
 	}
 
 	public int size() {
@@ -31,6 +39,7 @@ public class MyVector<T> {
 
 	public void add(T entry) {
 		if(size >= data.length - 1) {
+			@SuppressWarnings("unchecked")
 			T[] newData = (T[])new Object[data.length * 2];
 			for(int i = 0; i < size; i++) {
 				newData[i] = data[i];
