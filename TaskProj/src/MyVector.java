@@ -38,13 +38,13 @@ public class MyVector<T> {
 	}
 
 	public void add(T entry) {
-		if(size >= data.length - 1) {
+		if(size >= data.length) {
 			@SuppressWarnings("unchecked")
 			T[] newData = (T[])new Object[data.length * 2];
 			for(int i = 0; i < size; i++) {
 				newData[i] = data[i];
-				data = newData;
 			}
+			data = newData;
 		}
 		data[size] = entry;
 		size++;
