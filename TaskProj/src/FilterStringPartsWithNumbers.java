@@ -17,12 +17,17 @@ public class FilterStringPartsWithNumbers {
 
 		} else {
 
-			for (char ch : chars) {
+			int counter = 0;
+			
+			while (counter < chars.length) {
 
-				if (!Character.isDigit(ch)) {
+				if (!Character.isDigit(chars[counter])) {
 
 					filterResult = false;
+					
+					break;
 				}
+				counter++;
 			}
 		}
 		return filterResult;
@@ -44,7 +49,7 @@ public class FilterStringPartsWithNumbers {
 
 	public static void main(String[] args) {
 
-		String entry = "a1,2,3r,33,o1,,";
+		String entry = "a1,2,3r3r,33,o1,,";
 
 		printGoodEntriesWithInegerParseInt(entry);
 
