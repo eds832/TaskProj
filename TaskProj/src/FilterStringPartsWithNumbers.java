@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class FilterStringPartsWithNumbers {
-	
+
 	private static Predicate<String> filterWithIsDigit1 = part -> {
 
 		char[] chars = part.toCharArray();
@@ -19,13 +19,13 @@ public class FilterStringPartsWithNumbers {
 		} else {
 
 			int counter = 0;
-			
+
 			while (counter < chars.length) {
 
 				if (!Character.isDigit(chars[counter])) {
 
 					filterResult = false;
-					
+
 					break;
 				}
 				counter++;
@@ -33,14 +33,21 @@ public class FilterStringPartsWithNumbers {
 		}
 		return filterResult;
 	};
-	
+
 	private static Predicate<String> filterWithIsDigit2 = part -> {
-		
+
 		char[] chars = part.toCharArray();
-		
-		return !IntStream.range(0, chars.length).mapToObj(i -> chars[i]).filter(ch -> !Character.isDigit(ch)).findFirst().isPresent();
+
+		if (chars.length == 0) {
+
+			return false;
+
+		} else {
+
+			return !IntStream.range(0, chars.length).mapToObj(i -> chars[i]).filter(ch -> !Character.isDigit(ch)).findFirst().isPresent();
+		}
 	};
-	
+
 	private static Predicate<String> filterWithIntegerParseInt = part -> {
 
 		try {
@@ -54,18 +61,18 @@ public class FilterStringPartsWithNumbers {
 			return false;
 		}
 	};
-	
+
 	private static Predicate<String> filterWithMatches = part -> {
-		
-		if(part.matches("^\\d+$")) {
-			
+
+		if (part.matches("^\\d+$")) {
+
 			return true;
-			
+
 		} else {
-			
+
 			return false;
 		}
-		
+
 	};
 
 	public static void main(String[] args) {
@@ -75,25 +82,25 @@ public class FilterStringPartsWithNumbers {
 		printGoodEntriesWithInegerParseInt(entry);
 
 		printGoodEntriesWithIsDigit1(entry);
-		
+
 		printGoodEntriesWithIsDigit2(entry);
-		
+
 		printGoodEntriesWithMatches(entry);
 	}
 
 	private static void printGoodEntriesWithMatches(String entry) {
-		
+
 		printGoodEntries("With matches", entry, filterWithMatches);
 	}
 
 	private static void printGoodEntriesWithIsDigit1(String entry) {
-		
-		printGoodEntries("With isDigit1", entry, filterWithIsDigit1);		
+
+		printGoodEntries("With isDigit1", entry, filterWithIsDigit1);
 	}
-	
+
 	private static void printGoodEntriesWithIsDigit2(String entry) {
-		
-		printGoodEntries("With isDigit2", entry, filterWithIsDigit2);		
+
+		printGoodEntries("With isDigit2", entry, filterWithIsDigit2);
 	}
 
 	private static void printGoodEntriesWithInegerParseInt(String entry) {
@@ -101,15 +108,14 @@ public class FilterStringPartsWithNumbers {
 		printGoodEntries("With ParseInt", entry, filterWithIntegerParseInt);
 	}
 
-
 	private static void printGoodEntries(String prompt, String entry, Predicate<String> filter) {
-		
+
 		long start = System.currentTimeMillis();
-		
+
 		List<String> goodEntries = Arrays.stream(entry.split(",")).filter(filter).collect(Collectors.toList());
-		
+
 		long duration = System.currentTimeMillis() - start;
 
-		System.out.println(prompt + " result: " + goodEntries + ", spent time(ms): " + duration);		
+		System.out.println(prompt + " result: " + goodEntries + ", spent time(ms): " + duration);
 	}
 }
