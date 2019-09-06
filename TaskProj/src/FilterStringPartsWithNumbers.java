@@ -46,6 +46,19 @@ public class FilterStringPartsWithNumbers {
 			return false;
 		}
 	};
+	
+	private static Predicate<String> filterWithMatches = part -> {
+		
+		if(part.matches("^\\d+$")) {
+			
+			return true;
+			
+		} else {
+			
+			return false;
+		}
+		
+	};
 
 	public static void main(String[] args) {
 
@@ -54,6 +67,13 @@ public class FilterStringPartsWithNumbers {
 		printGoodEntriesWithInegerParseInt(entry);
 
 		printGoodEntriesWithIsDigit(entry);
+		
+		printGoodEntriesWithMatches(entry);
+	}
+
+	private static void printGoodEntriesWithMatches(String entry) {
+		
+		printGoodEntries("With matches", entry, filterWithMatches);
 	}
 
 	private static void printGoodEntriesWithIsDigit(String entry) {
