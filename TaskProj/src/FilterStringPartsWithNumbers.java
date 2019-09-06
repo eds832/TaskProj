@@ -49,6 +49,11 @@ public class FilterStringPartsWithNumbers {
 	};
 
 	private static Predicate<String> filterWithIntegerParseInt = part -> {
+		
+		if(part.isEmpty()) {
+			
+			return false;
+		}
 
 		try {
 
