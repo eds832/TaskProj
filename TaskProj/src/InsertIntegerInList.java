@@ -35,7 +35,7 @@ public class InsertIntegerInList {
 		int i = position;
 		int valToReplace = ints.get(position);
 		ints.set(position, value);
-		while(i < ints.size()) {
+		while(true) {
 			int nextValue = 0;
 			if(i != ints.size() - 1) {
 				nextValue = ints.get(i + 1);
