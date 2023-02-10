@@ -29,7 +29,7 @@ public class InsertIntegerInList {
 	}
 
 	private static List<Integer> insertInt(List<Integer> ints , int position, int value) {
-		if(ints.size() - 1 < position) {
+		if(position < 0 || position >= ints.size()) {
 			throw new UnsupportedOperationException("position doesn't exist in array");
 		}
 		int i = position;
@@ -37,15 +37,15 @@ public class InsertIntegerInList {
 		ints.set(position, value);
 		while(true) {
 			int nextValue = 0;
-			if(i != ints.size() - 1) {
-				nextValue = ints.get(i + 1);
-				ints.set(i + 1, valToReplace);
+			i++;
+			if(i != ints.size()) {
+				nextValue = ints.get(i);
+				ints.set(i, valToReplace);
 			} else {
 				ints.add(valToReplace);
 				break;
 			}
 			valToReplace = nextValue;
-			i++;
 		}
 		return ints;
 	}
