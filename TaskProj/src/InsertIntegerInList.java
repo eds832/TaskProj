@@ -32,21 +32,14 @@ public class InsertIntegerInList {
 		if(ints == null || position < 0 || position >= ints.size()) {
 			throw new IllegalArgumentException("array are null or position doesn't exist in array");
 		}
-		int i = position;
 		int valToReplace = ints.get(position);
 		ints.set(position, value);
-		while(true) {
-			int nextValue = 0;
-			i++;
-			if(i != ints.size()) {
-				nextValue = ints.get(i);
-				ints.set(i, valToReplace);
-			} else {
-				ints.add(valToReplace);
-				break;
-			}
+		for(int i = position + 1; i < ints.size(); i++) {
+			int nextValue = ints.get(i);
+			ints.set(i, valToReplace);
 			valToReplace = nextValue;
 		}
+		ints.add(valToReplace);
 		return ints;
 	}
 
