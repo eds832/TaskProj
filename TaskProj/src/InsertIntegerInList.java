@@ -29,8 +29,8 @@ public class InsertIntegerInList {
 	}
 
 	private static List<Integer> insertInt(List<Integer> ints , int position, int value) {
-		if(position < 0 || position >= ints.size()) {
-			throw new UnsupportedOperationException("position doesn't exist in array");
+		if(ints == null || position < 0 || position >= ints.size()) {
+			throw new IllegalArgumentException("array are null or position doesn't exist in array");
 		}
 		int i = position;
 		int valToReplace = ints.get(position);
