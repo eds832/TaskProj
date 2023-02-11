@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ListIterator;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,6 +24,9 @@ public class ReverseString {
 			s += String.valueOf(it.previous());
 		}
 		System.out.println(s);
+		char[] charArr = new char[str.length()];
+		IntStream.rangeClosed(0, str.length() - 1).forEach(i -> charArr[i] = str.charAt(str.length() - 1 - i));
+		System.out.println(new String(charArr));
 		s = "";
 		for (int i = str.length() - 1; i >= 0; i--) {
 			s += String.valueOf(str.charAt(i));
