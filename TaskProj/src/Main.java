@@ -29,10 +29,9 @@ class Main {
 			if (p.getAge() < 0 || p.getNationality() == null) {
 				throw new IllegalArgumentException("Incorrect Person data: age below zero or nationality is null");
 			}
-		}).collect(
-				Collectors.groupingBy(Person::getNationality, TreeMap::new, Collectors.averagingInt(Person::getAge)));
+		}).collect(Collectors.groupingBy(Person::getNationality, TreeMap::new, Collectors.averagingInt(Person::getAge)));
 		
-		return averageAges.toString().replaceAll("=", ": ").replaceAll("\\.0", "");
+		return averageAges.toString().replaceAll("=", ": ").replaceAll("\\.\\d+", "");
 	}
 
 	private static String getAverageAgePerNationality1(List<Person> people) {
